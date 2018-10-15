@@ -41,4 +41,10 @@ export class HeaderComponent implements OnInit{
             this.notifications = data;
         })
     }
+
+    clearNotifications(type: string) {
+        this.notificationService.clearNotifications(type).subscribe(data => {
+            this.getAddedAnswerNotifications();
+        });
+    }
 }
