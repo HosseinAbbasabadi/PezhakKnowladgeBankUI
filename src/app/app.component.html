@@ -1,0 +1,13 @@
+<app-header></app-header>
+<div *mkLoadingPage="{checkPendingRoute: true, checkPendingHttp: true}">
+    <mk-material-bar colorOne="#dd4b39" colorTwo="#00a65a" colorThree="#f39c12"></mk-material-bar>    
+</div>
+<div class="container-fluid" style="margin-top: 20px">
+
+  <right-menu></right-menu>
+  
+  <div class="col-md-9">
+      <router-outlet></router-outlet>
+  </div>
+
+</div>

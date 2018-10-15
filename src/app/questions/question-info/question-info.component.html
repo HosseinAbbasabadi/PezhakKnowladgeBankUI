@@ -1,0 +1,80 @@
+<div class="col-md-12 question-header">
+    <div class="row">
+        <div class="col-md-10">
+            <h3>{{question.title}}</h3>
+        </div>
+        <div class="col-md-2">
+            <a routerLink="/add-question" class="btn btn-primary waves-effect waves-light btn-lg m-b-5">سوال بپرس</a>
+        </div>
+    </div>  
+
+    <br />
+
+    <div class="col-md-1 pull-right" style="text-align: center">
+        <a (click)="vote(true)" class="vote-up">up vote</a>
+        <div class="vote-number">{{question.votes}}</div>
+        <a (click)="vote(false)" class="vote-down"></a>
+    </div>
+
+    <div class="col-md-11 pull-right">
+        <h4>
+            {{question.inquirer}} 
+        </h4>
+
+        <app-ngx-editor [config]="questionBodyConfig" [(ngModel)]="question.body" name="question.body"></app-ngx-editor>
+
+        <div class="col-md-9 pull-right tags">
+            <a href="#" class="tag" *ngFor="let tag of question.tags">{{tag.name}}</a>
+        </div>
+        <div class="col-md-3 pull-left">
+            <div class="creator-date">
+                <span>
+                    {{question.creationDateTime}}
+                </span>
+            </div>  
+        </div>
+    </div>
+</div>
+
+<div class="col-md-12">
+    <!-- <div class=""></div> -->
+    <h3>{{answers.length}} پاسخ</h3>
+    <br>
+    
+    <div class="col-md-12 answer-body" *ngFor="let answer of answers">
+
+        <div class="col-md-1" style="text-align: center" *ngIf="answer.isChosen">
+            <span href="#" class="currect-answer-button">accepted</span>
+        </div>
+
+        <div class="col-md-1" style="text-align: center" *ngIf="!answer.isChosen">
+            <span (click)="setAsChosenAnswer(answer.id)" class="not-currect-answer-button">not accepted</span>
+        </div>
+
+        <div class="col-md-11">
+            <h4>
+                {{answer.responder}}:
+            </h4>
+            <app-ngx-editor [config]="questionBodyConfig" [(ngModel)]="answer.body" name="answer.body"></app-ngx-editor>
+            {{answer.creationDateTime}}
+        </div>
+
+    </div>
+</div>
+
+<div class="col-md-12">
+    <h3>پاسخ شما:</h3>
+    <form class="form-horizontal">
+        <div class="form-group" style="margin-bottom: 10px">
+            <div class="col-md-12">
+                <app-ngx-editor [config]="addAnswerConfig" [(ngModel)]="answer.body" name="question.body"></app-ngx-editor>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-12">
+                <button (click)="addAnswer(answer)" class="btn btn-primary btn-lg">ثبت پاسخ</button>
+            </div>
+        </div>
+    </form>
+</div>

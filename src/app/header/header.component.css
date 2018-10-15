@@ -1,0 +1,10 @@
+.top-color-bar{
+    background-color: #F48024;
+    height: 5px;
+    width: 100%;
+}
+
+.user-name{
+    margin-top: 10px;
+    font-size: 18px;
+}
