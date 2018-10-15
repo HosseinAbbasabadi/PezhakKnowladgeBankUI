@@ -1,5 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { UserService, QuestionModel, NotificationService} from "../shared";
+import { TimeInterval } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { interval } from "rxjs/observable/interval";
 
 @Component({
     selector: "app-header",
@@ -12,7 +15,7 @@ export class HeaderComponent implements OnInit{
     userFullName: string;
     searchExpression: string;
     searchResult = new Array<QuestionModel>();
-    notifications: any;
+    notifications = new Array<any>();
 
     constructor(private readonly userService: UserService, 
                 private readonly notificationService: NotificationService) {
@@ -22,6 +25,9 @@ export class HeaderComponent implements OnInit{
     ngOnInit(): void {
         this.getUserFullName();
         this.getAddedAnswerNotifications();
+        interval(1000).pipe(
+            map(() => { this.getAddedAnswerNotifications(); })
+          );
     }
 
     getUserFullName() {

@@ -12,6 +12,6 @@ export class NotificationService {
     getAnswerAddedNotifications() {
         var action = "AnswerAddedNotifications";
         this.httpService.ajax_url = environment.notification_api_url;
-        return this.httpService.getAll(this.notificationControllerName + "/" + action);
+        return this.httpService.getAll<any>(this.notificationControllerName + "/" + action);
     }
 }
