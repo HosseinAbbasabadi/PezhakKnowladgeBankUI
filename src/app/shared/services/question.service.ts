@@ -16,7 +16,7 @@ export class QuestionService{
         this.httpService.ajax_url = environment.forum_api_url;
     }
 
-    CreateQuestion(command: CreateQuestion){
+    CreateQuestion(command: CreateQuestion) {
         return this.httpService.post<any>(this.questionControllerName, command);
     }
 

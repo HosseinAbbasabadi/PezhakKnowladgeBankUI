@@ -1,7 +1,6 @@
 import { Component, OnInit } from "@angular/core";
-import { Router } from "@angular/router";
-import { QuestionService, CreateQuestion, Tag, TagService } from "../../shared";
-import { Select2OptionData } from 'ng2-select2';
+import { Router, ActivatedRoute  } from "@angular/router";
+import { QuestionService, CreateQuestion, TagService, Tag } from "../../shared";
 
 @Component({
     moduleId: module.id,
@@ -12,42 +11,63 @@ import { Select2OptionData } from 'ng2-select2';
 })
 
 export class AddQuestionComponent implements OnInit {
+    dropdownList = [];
+    dropdownSettings = {};
+    questionTags = new Array<number>();
     question = new CreateQuestion();
-    tags: number[];
-    exampleData = new Array<Select2OptionData>();
+    selectedTags = new Array<Tag>();
     options: Select2Options;
+
     editorConfig = {
         editable: true,
         spellcheck: true,
         height: '10rem',
         minHeight: '10rem',
         placeholder: 'متن سوال',
-        translate: 'no',
+        translate: 'no'
     };
 
     constructor(private readonly questionService: QuestionService,
                 private readonly router: Router,
+                private readonly route: ActivatedRoute,
                 private readonly tagService: TagService) {
     }
 
-    ngOnInit(){
+    ngOnInit() {
         this.options = {
-            multiple: true
+            multiple: true,
+            closeOnSelect: false
         }
-        var tags = this.tagService.getTags();
-        tags.forEach(tag => {
-            this.exampleData.push({ id: tag.id.toString(), text: tag.name });
+        this.getTags();
+        this.dropdownSettings = {
+            singleSelection: false,
+            idField: 'id',
+            textField: 'name',
+            selectAllText: 'Select All',
+            unSelectAllText: 'UnSelect All',
+            allowSearchFilter: true,
+            enableCheckAll: false
+        };
+    }
+
+    getTags() {
+        this.tagService.getTags().then(data => {
+            this.dropdownList = data;
         });
     }
 
     create(command: CreateQuestion){
-        command.tags = this.tags;
+        command.tags = this.mapTags();
         this.questionService.CreateQuestion(command).subscribe(data => {
             this.router.navigateByUrl("/");
         });
     }
 
-    changed(data: {value: number[]}) {
-        this.tags = data.value;
+    private mapTags() {
+        var questionTags = new Array<number>();
+        this.selectedTags.forEach(x => {
+            questionTags.push(x.id);
+        })
+        return questionTags;
     }
 }

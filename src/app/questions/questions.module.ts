@@ -7,10 +7,13 @@ import { QuestionsComponent } from "./questions.component";
 import { CallBack } from "../callback/callback.component";
 import { AddQuestionComponent } from "./add-question";
 import { QuestionInfoComponent } from "./question-info";
+
 import { Select2Module } from 'ng2-select2';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+
 import { NgxEditorModule } from 'ngx-editor';
 import {ButtonsModule} from 'ngx-bootstrap';
-import { AuthGuardService } from "../shared";
+import { AuthGuardService, TagService } from "../shared";
 
 const questionsRoutes: ModuleWithProviders = RouterModule.forChild([
     {
@@ -40,7 +43,8 @@ const questionsRoutes: ModuleWithProviders = RouterModule.forChild([
       BrowserModule,
       Select2Module,
       NgxEditorModule,
-      ButtonsModule
+      ButtonsModule,
+      NgMultiSelectDropDownModule
     ],
     providers: [
     ]

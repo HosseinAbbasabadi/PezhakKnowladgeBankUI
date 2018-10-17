@@ -4,19 +4,21 @@ import { Tag } from "../model";
 
 @Injectable()
 export class TagService {
+    tagControllerName = "Tag";
+
     constructor(private readonly httpService: HttpService){
-
     }
 
-    getTags() : Array<Tag>{
-        return this.tags();
+    getTags() {
+        return this.httpService.getAll<Array<Tag>>(this.tagControllerName).toPromise().then(res => res);
     }
+
     searchTagsBy(name: string) : Array<Tag>{
         var result = this.tags().filter(x=>x.name.includes(name));
         return result;
     }
 
-    tags(){
+    tags() {
         var tags = new Array<Tag>();
         var tag = new Tag(1, "دبیرخانه");
         var tag1 = new Tag(2, "پرسنلی");

@@ -10,4 +10,8 @@ export class SharedDataService {
   set(data: any) {
     this.data.next(data);
   }
+
+  get() {
+    return this.data;
+  }
 }

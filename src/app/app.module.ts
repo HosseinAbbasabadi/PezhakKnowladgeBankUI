@@ -15,7 +15,6 @@ import {
   AuthenticationService,
   LocalStorageService,
   SecurityInterceptor,
-  
 } from "./shared";
 
 import { QuestionsModule } from "./questions";
@@ -55,7 +54,8 @@ const appRoute: ModuleWithProviders = RouterModule.forRoot([
       provide: HTTP_INTERCEPTORS,
       useClass: SecurityInterceptor,
       multi: true 
-    } 
+    }
+    
   ],
   bootstrap: [AppComponent]
 })
