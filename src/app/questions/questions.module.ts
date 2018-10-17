@@ -8,7 +8,6 @@ import { CallBack } from "../callback/callback.component";
 import { AddQuestionComponent } from "./add-question";
 import { QuestionInfoComponent } from "./question-info";
 
-import { Select2Module } from 'ng2-select2';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
 import { NgxEditorModule } from 'ngx-editor';
@@ -41,7 +40,6 @@ const questionsRoutes: ModuleWithProviders = RouterModule.forChild([
       FormsModule,
       CommonModule,
       BrowserModule,
-      Select2Module,
       NgxEditorModule,
       ButtonsModule,
       NgMultiSelectDropDownModule

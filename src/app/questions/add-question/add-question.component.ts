@@ -16,7 +16,6 @@ export class AddQuestionComponent implements OnInit {
     questionTags = new Array<number>();
     question = new CreateQuestion();
     selectedTags = new Array<Tag>();
-    options: Select2Options;
 
     editorConfig = {
         editable: true,
@@ -34,10 +33,6 @@ export class AddQuestionComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.options = {
-            multiple: true,
-            closeOnSelect: false
-        }
         this.getTags();
         this.dropdownSettings = {
             singleSelection: false,
