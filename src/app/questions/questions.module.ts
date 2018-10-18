@@ -4,7 +4,6 @@ import { CommonModule } from "@angular/common";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { BrowserModule } from '@angular/platform-browser';
 import { QuestionsComponent } from "./questions.component";
-import { CallBack } from "../callback/callback.component";
 import { AddQuestionComponent } from "./add-question";
 import { QuestionInfoComponent } from "./question-info";
 
@@ -31,8 +30,7 @@ const questionsRoutes: ModuleWithProviders = RouterModule.forChild([
     declarations: [
         AddQuestionComponent,
         QuestionInfoComponent,
-        QuestionsComponent,
-        CallBack
+        QuestionsComponent
     ],
     imports: [
       questionsRoutes,
