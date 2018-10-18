@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Router, ActivatedRoute  } from "@angular/router";
-import { QuestionService, CreateQuestion, TagService, Tag } from "../../shared";
+import { QuestionService, CreateQuestion, TagService, Tag, CreateTag } from "../../shared";
 
 @Component({
     moduleId: module.id,
@@ -16,6 +16,7 @@ export class AddQuestionComponent implements OnInit {
     questionTags = new Array<number>();
     question = new CreateQuestion();
     selectedTags = new Array<Tag>();
+    tagToCreate = new CreateTag();
 
     editorConfig = {
         editable: true,
@@ -28,7 +29,6 @@ export class AddQuestionComponent implements OnInit {
 
     constructor(private readonly questionService: QuestionService,
                 private readonly router: Router,
-                private readonly route: ActivatedRoute,
                 private readonly tagService: TagService) {
     }
 
@@ -64,5 +64,12 @@ export class AddQuestionComponent implements OnInit {
             questionTags.push(x.id);
         })
         return questionTags;
+    }
+
+    createTag(command: CreateTag) {
+        this.tagService.create(command).subscribe(() => {
+            this.ngOnInit();
+            this.tagToCreate.name = "";
+        });
     }
 }

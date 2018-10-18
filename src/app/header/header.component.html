@@ -34,7 +34,7 @@
             </ul> -->
             <form class="navbar-form navbar-right">
                 <div class="form-group">
-                <input type="text" class="form-control search" placeholder="جستجو در سوالات" style="width: 400px" [(ngModel)]="searchExpression" id="searchExpression" name="searchExpression">
+                <input type="text" class="form-control search" placeholder="جستجو در سوالات" style="width: 400px" [(ngModel)]="searchExpression" id="searchExpression" name="searchExpression" autocomplete="off">
                 </div>
                 <button [routerLink]="['/search', searchExpression]" type="submit" class="btn btn-default btn-custom">جستجو</button>
             </form>

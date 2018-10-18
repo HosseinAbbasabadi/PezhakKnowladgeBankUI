@@ -12,7 +12,7 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
 import { NgxEditorModule } from 'ngx-editor';
 import {ButtonsModule} from 'ngx-bootstrap';
-import { AuthGuardService, TagService } from "../shared";
+import { AuthGuardService } from "../shared";
 
 const questionsRoutes: ModuleWithProviders = RouterModule.forChild([
     {

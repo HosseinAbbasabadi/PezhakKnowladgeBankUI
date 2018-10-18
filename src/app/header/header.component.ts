@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { UserService, QuestionModel, NotificationService} from "../shared";
+import { UserService, QuestionModel, PushNotificationService, PullNotificationService} from "../shared";
 import { TimeInterval } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { interval } from "rxjs/observable/interval";
@@ -8,7 +8,7 @@ import { interval } from "rxjs/observable/interval";
     selector: "app-header",
     templateUrl: "./header.component.html",
     styleUrls: ["./header.component.css"],
-    providers: [ UserService, NotificationService ]
+    providers: [ UserService, PushNotificationService, PullNotificationService ]
 })
 
 export class HeaderComponent implements OnInit{
@@ -18,16 +18,16 @@ export class HeaderComponent implements OnInit{
     notifications = new Array<any>();
 
     constructor(private readonly userService: UserService, 
-                private readonly notificationService: NotificationService) {
+                private readonly pullNotificationService: PullNotificationService,
+                private readonly pushNotificationService: PushNotificationService) {
 
     }
 
     ngOnInit(): void {
         this.getUserFullName();
         this.getAddedAnswerNotifications();
-        interval(1000).pipe(
-            map(() => { this.getAddedAnswerNotifications(); })
-          );
+        const notificationData = interval(15000);
+        notificationData.subscribe(n =>  this.getAddedAnswerNotifications());
     }
 
     getUserFullName() {
@@ -37,13 +37,13 @@ export class HeaderComponent implements OnInit{
     }
 
     getAddedAnswerNotifications() {
-        this.notificationService.getAnswerAddedNotifications().subscribe(data => {
+        this.pullNotificationService.getAnswerAddedNotifications().subscribe(data => {
             this.notifications = data;
         })
     }
 
-    clearNotifications(type: string) {
-        this.notificationService.clearNotifications(type).subscribe(data => {
+    clearNotifications(id: string) {
+        this.pushNotificationService.clearNotifications(id).subscribe(data => {
             this.getAddedAnswerNotifications();
         });
     }

@@ -22,7 +22,6 @@ export class AuthenticationService {
         var userManager = this.userManager;
         userManager.signinRedirectCallback().then(function (user){
             localStorage.setItem(ACCESS_TOKEN_NAME, user.access_token);
-            location.reload();
         }).catch(function(){
             userManager.signinRedirect().then(function () {
             }).catch(function (){

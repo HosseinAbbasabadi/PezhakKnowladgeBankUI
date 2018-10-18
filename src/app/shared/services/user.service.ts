@@ -1,16 +1,16 @@
 import { Injectable, Inject } from "@angular/core";
 import { HttpService } from "./http.service";
 import { environment } from "../../../environments/environment";
+import { ServiceBase } from "./service.base";
 
 @Injectable()
-export class UserService {
-    identityControllerName = "Identity";
+export class UserService extends ServiceBase {
 
     constructor(private readonly httpService: HttpService) {
-        this.httpService.ajax_url = environment.forum_api_url;
+        super(environment.identity_api_url, "Identity");
     }
 
     getUserFullName() {
-        return this.httpService.getAll<string>(this.identityControllerName);
+        return this.httpService.getAll<string>(this.pathFactory());
     }
 }

@@ -8,8 +8,6 @@ import "rxjs/add/operator/catch";
 
 @Injectable()
 export class HttpService {
-  ajax_url = environment.forum_api_url;
-  
   constructor(private readonly http: HttpClient) {
   }
 
@@ -22,26 +20,26 @@ export class HttpService {
   }
 
   getAll<T>(path: string, body: Object = {}, params: URLSearchParams = new URLSearchParams()) {
-    return this.http.get<T>(`${this.ajax_url}${path}`, { headers: this.setHeaders() });
+    return this.http.get<T>(`${path}`, { headers: this.setHeaders() });
   }
 
   get<T>(path: string, id: number, params: URLSearchParams = new URLSearchParams()) {
-    return this.http.get<T>(`${this.ajax_url}${path}/${id}`, { headers: this.setHeaders() });
+    return this.http.get<T>(`${path}/${id}`, { headers: this.setHeaders() });
   }
 
   put(path: string, body: Object = {}) {
-    return this.http.put<any>(`${this.ajax_url}${path}`,body, { headers: this.setHeaders() });
+    return this.http.put<any>(`${path}`,body, { headers: this.setHeaders() });
   }
 
   post<T>(path: string, body: Object = {}) {
-    return this.http.post<T>(`${this.ajax_url}${path}`,body, { headers: this.setHeaders() });
+    return this.http.post<T>(`${path}`,body, { headers: this.setHeaders() });
   }
 
-  delete(path): Observable<any> {
-    return this.http.delete(`${this.ajax_url}${path}`,{ headers: this.setHeaders() });
+  delete(ajax_url: string, path): Observable<any> {
+    return this.http.delete(`${ajax_url}${path}`,{ headers: this.setHeaders() });
   }
   
-  identityGet(path: string) {
-    return this.http.get<string>(`${this.ajax_url}${path}`, { headers: this.setHeaders() });
+  identityGet(ajax_url: string, path: string) {
+    return this.http.get<string>(`${ajax_url}${path}`, { headers: this.setHeaders() });
   }
 }
