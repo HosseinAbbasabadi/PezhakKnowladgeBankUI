@@ -7,7 +7,7 @@ import { ServiceBase } from "./service.base";
 export class UserService extends ServiceBase {
 
     constructor(private readonly httpService: HttpService) {
-        super(environment.identity_api_url, "Identity");
+        super(environment.forum_api_url, "Identity");
     }
 
     getUserFullName() {

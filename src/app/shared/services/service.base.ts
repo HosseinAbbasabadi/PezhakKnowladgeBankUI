@@ -1,3 +1,5 @@
+import { isUndefined } from "util";
+
 export class ServiceBase {
     public controller: string = "";
     public ajaxUrl: string = "";
@@ -8,6 +10,9 @@ export class ServiceBase {
     }
 
     public pathFactory(action?: string){
-        return this.ajaxUrl + "/" + this.controller + "/" + action;
+        if(isUndefined(action)){
+            return this.ajaxUrl + this.controller;
+        }
+        return this.ajaxUrl + this.controller + "/" + action;
     }
 }

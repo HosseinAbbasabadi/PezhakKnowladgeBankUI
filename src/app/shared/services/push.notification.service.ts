@@ -12,6 +12,6 @@ export class PushNotificationService extends ServiceBase {
 
     clearNotifications(id: string) {
         var action = "ClearNotifications";
-        return this.httpService.put(this.pathFactory(action) + "/" + action + "/" + id);
+        return this.httpService.put(this.pathFactory(action)+ "/" + id);
     }
 }
