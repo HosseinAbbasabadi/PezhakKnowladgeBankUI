@@ -1,10 +1,15 @@
-.top-color-bar{
+.top-color-bar {
     background-color: #F48024;
     height: 5px;
     width: 100%;
 }
 
-.user-name{
+.user-name {
     margin-top: 10px;
     font-size: 18px;
+}
+
+.sign-out {
+    margin-top: 5px;
+    margin-left: 5px;
 }

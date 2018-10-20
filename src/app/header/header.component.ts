@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { UserService, QuestionModel, PushNotificationService, PullNotificationService} from "../shared";
+import { UserService, QuestionModel, PushNotificationService, PullNotificationService, AuthenticationService, LocalStorageService, ACCESS_TOKEN_NAME} from "../shared";
 import { TimeInterval } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { interval } from "rxjs/observable/interval";
@@ -8,7 +8,7 @@ import { interval } from "rxjs/observable/interval";
     selector: "app-header",
     templateUrl: "./header.component.html",
     styleUrls: ["./header.component.css"],
-    providers: [ UserService, PushNotificationService, PullNotificationService ]
+    providers: [ UserService, PushNotificationService, PullNotificationService, AuthenticationService, LocalStorageService ]
 })
 
 export class HeaderComponent implements OnInit{
@@ -19,7 +19,9 @@ export class HeaderComponent implements OnInit{
 
     constructor(private readonly userService: UserService, 
                 private readonly pullNotificationService: PullNotificationService,
-                private readonly pushNotificationService: PushNotificationService) {
+                private readonly pushNotificationService: PushNotificationService,
+                private readonly authService: AuthenticationService,
+                private localStorageService: LocalStorageService) {
 
     }
 
@@ -46,5 +48,13 @@ export class HeaderComponent implements OnInit{
         this.pushNotificationService.clearNotifications(id).subscribe(data => {
             this.getAddedAnswerNotifications();
         });
+    }
+
+    
+    signout() {
+        if(confirm("آیا از خروج اطمینان دارید؟" )) {
+            this.localStorageService.removeItem(ACCESS_TOKEN_NAME);
+            this.authService.logout();
+        }
     }
 }

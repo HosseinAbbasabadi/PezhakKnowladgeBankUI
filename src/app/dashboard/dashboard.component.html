@@ -11,7 +11,7 @@
 
 <div class="col-md-12">
 
-    <div class="question-block" *ngFor="let question of questions">
+    <div class="question-block" *ngFor="let question of questions" [ngClass]="{'no-true-answer': !question.hasTrueAnswer}">
         <div class="col-md-3 question-statistics">
             <div class="col-md-4 votes">
                 <div class="mini-count">
