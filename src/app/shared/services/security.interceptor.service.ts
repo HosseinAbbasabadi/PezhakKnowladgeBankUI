@@ -38,7 +38,7 @@ export class SecurityInterceptor implements HttpInterceptor {
                   this.authenticationService.login();
                 }
                 if(err.status === 400 ){
-                    alert(err.error.statusCode + " - " + err.error.message);
+                    alert(err.error);
                 }
                 else{
                   console.log(err);
