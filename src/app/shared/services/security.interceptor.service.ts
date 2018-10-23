@@ -34,11 +34,16 @@ export class SecurityInterceptor implements HttpInterceptor {
             }
           }, (err: any) => {
             if (err instanceof HttpErrorResponse) {
+                if(err.status === 400 ) {
+                    alert(err.error);
+                }
+
                 if (err.status === 401) {
                   this.authenticationService.login();
                 }
-                if(err.status === 400 ){
-                    alert(err.error);
+
+                if(err.status === 403) {
+                  alert("شما دسترسی لازم جهت انجام این عملیات را ندارید")
                 }
                 else{
                   console.log(err);

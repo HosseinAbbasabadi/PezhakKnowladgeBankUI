@@ -21,10 +21,12 @@ import { QuestionsModule } from "./questions";
 import { LoadingPageModule } from 'angular-loading-page';
 import { MaterialBarModule } from 'angular-loading-page';
 import { FormsModule } from '@angular/forms';
+import { NotificationComponent } from './notifications/notification.component';
 
 const appRoute: ModuleWithProviders = RouterModule.forRoot([
   { path: "", component: DashboardComponent },
-  { path: "search/:expression", component: SearchComponent }
+  { path: "search/:expression", component: SearchComponent },
+  { path: "notifications", component: NotificationComponent }
 ]);
 
 @NgModule({
@@ -33,7 +35,8 @@ const appRoute: ModuleWithProviders = RouterModule.forRoot([
     HeaderComponent,
     DashboardComponent,
     RightMenuComponent,
-    SearchComponent
+    SearchComponent,
+    NotificationComponent
   ],
   imports: [
     BrowserModule,

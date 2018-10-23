@@ -11,7 +11,12 @@ export class PullNotificationService extends ServiceBase {
     }
 
     getAnswerAddedNotifications() {
-        var action = "AnswerAddedNotifications";
+        var action = "GetAnswerAdded";
+        return this.httpService.getAll<any>(this.pathFactory(action));
+    }
+
+    getQuestionCreatedNotifications() {
+        var action = "GetQuestionCreated";
         return this.httpService.getAll<any>(this.pathFactory(action));
     }
 }

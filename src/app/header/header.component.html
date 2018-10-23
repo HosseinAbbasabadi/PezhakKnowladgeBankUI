@@ -41,7 +41,7 @@
 
 
             <div class="user-name navbar-left">
-                <div class="pull-right">
+                <div class="pull-right" routerLink="/notifications">
                     {{userFullName}}
                 </div>
 
@@ -49,12 +49,12 @@
                         <a  class="dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-expanded="true">
                             <i class="md md-notifications"></i> <span class="badge badge-danger">{{notifications.length}}</span>
                         </a>
-                        <ul class="dropdown-menu dropdown-menu-lg">
+                        <!-- <ul class="dropdown-menu dropdown-menu-lg">
                             <li class="text-center notifi-title">اطلاعیه ها</li>
                             <li class="list-group">
 
                                 <a href="javascript:void(0);" class="list-group-item" *ngFor="let notification of notifications">
-                                    <div class="media" [routerLink]="['/question-info', notification.questionId]" style="cursor: pointer" (click)="clearNotifications(notification.id)">
+                                    <div class="media" [routerLink]="['/question-info', notification.questionId]" style="cursor: pointer">
                                         <div class="pull-right">
                                         <em class="fa fa-user-plus fa-2x text-info"></em>
                                         </div>
@@ -66,11 +66,8 @@
                                         </div>
                                     </div>
                                 </a>
-                                <!-- <a href="javascript:void(0);" class="list-group-item">
-                                    <small>مشاهده همه</small>
-                                </a> -->
                             </li>
-                        </ul>
+                        </ul> -->
                     </li>
             </div>
 

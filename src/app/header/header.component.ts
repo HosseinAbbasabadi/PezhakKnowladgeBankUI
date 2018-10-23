@@ -8,7 +8,7 @@ import { interval } from "rxjs/observable/interval";
     selector: "app-header",
     templateUrl: "./header.component.html",
     styleUrls: ["./header.component.css"],
-    providers: [ UserService, PushNotificationService, PullNotificationService, AuthenticationService, LocalStorageService ]
+    providers: [ UserService, PullNotificationService, AuthenticationService, LocalStorageService ]
 })
 
 export class HeaderComponent implements OnInit{
@@ -19,7 +19,6 @@ export class HeaderComponent implements OnInit{
 
     constructor(private readonly userService: UserService, 
                 private readonly pullNotificationService: PullNotificationService,
-                private readonly pushNotificationService: PushNotificationService,
                 private readonly authService: AuthenticationService,
                 private localStorageService: LocalStorageService) {
 
@@ -27,9 +26,8 @@ export class HeaderComponent implements OnInit{
 
     ngOnInit(): void {
         this.getUserFullName();
-        this.getAddedAnswerNotifications();
-        const notificationData = interval(15000);
-        notificationData.subscribe(n =>  this.getAddedAnswerNotifications());
+        // const notificationData = interval(15000);
+        // notificationData.subscribe(n =>  this.getAddedAnswerNotifications());
     }
 
     getUserFullName() {
@@ -38,19 +36,6 @@ export class HeaderComponent implements OnInit{
         });
     }
 
-    getAddedAnswerNotifications() {
-        this.pullNotificationService.getAnswerAddedNotifications().subscribe(data => {
-            this.notifications = data;
-        })
-    }
-
-    clearNotifications(id: string) {
-        this.pushNotificationService.clearNotifications(id).subscribe(data => {
-            this.getAddedAnswerNotifications();
-        });
-    }
-
-    
     signout() {
         if(confirm("آیا از خروج اطمینان دارید؟" )) {
             this.localStorageService.removeItem(ACCESS_TOKEN_NAME);

@@ -1,0 +1,38 @@
+<div class="col-md-12 questions-title text-primary">
+    <div class="col-md-6 latest-questions">
+        <h2 class="panel-title">تابلوی اعلانات</h2>
+    </div>
+
+    <div class="col-md-6 new-question">
+        <a routerLink="/add-question" class="btn btn-primary waves-effect waves-light btn-lg m-b-5" style="float: left;">سوال بپرس</a>
+    </div>
+</div>
+
+<div class="col-md-12">
+
+    <div class="col-lg-6">
+        <div class="panel panel-info panel-border">
+            <div class="panel-heading"> 
+                <h3 class="panel-title">پاسخ ها به سوالات شما</h3> 
+            </div> 
+            <div class="panel-body"> 
+                <div class="alert alert-info" *ngFor="let notification of answerAddedNotifications">
+                    سوال: <a [routerLink]="['/question-info', notification.questionId]" class="alert-link" (click)="clearNotifications(notification.id)">{{notification.questionTitle}}</a> توسط: {{notification.responderName}} پاسخ داده شد
+                </div>
+            </div> 
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <div class="panel panel-info panel-border">
+            <div class="panel-heading"> 
+                <h3 class="panel-title">سوالات تایید نشده</h3> 
+            </div> 
+            <div class="panel-body"> 
+                <div class="alert alert-info" *ngFor="let notification of questionCreatedNotifications">
+                    سوال: <a [routerLink]="['/question-info', notification.questionId]" class="alert-link" (click)="clearNotifications(notification.id)">{{notification.questionTitle}}</a> توسط: {{notification.inquirer}} پرسیده شد
+                </div>
+            </div> 
+        </div>
+    </div>
+</div>
