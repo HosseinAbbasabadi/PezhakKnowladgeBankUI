@@ -5100,7 +5100,7 @@ a.thumbnail.active {
 .alert-dismissible .close {
   position: relative;
   top: -2px;
-  right: -21px;
+  left: 10px;
   color: inherit;
 }
 .alert-success {
@@ -5887,7 +5887,7 @@ button.list-group-item-danger.active:focus {
   border-radius: 3px;
 }
 .close {
-  float: right;
+  float: left;
   font-size: 21px;
   font-weight: bold;
   line-height: 1;

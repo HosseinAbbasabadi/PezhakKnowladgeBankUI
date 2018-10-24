@@ -19,4 +19,9 @@ export class PullNotificationService extends ServiceBase {
         var action = "GetQuestionCreated";
         return this.httpService.getAll<any>(this.pathFactory(action));
     }
+
+    getUserNotificationsCount() {
+        var action = "GetNotificationsCount";
+        return this.httpService.getAll<any>(this.pathFactory(action));
+    }
 }

@@ -15,7 +15,7 @@ export class HeaderComponent implements OnInit{
     userFullName: string;
     searchExpression: string;
     searchResult = new Array<QuestionModel>();
-    notifications = new Array<any>();
+    notificationsCount: number;
 
     constructor(private readonly userService: UserService, 
                 private readonly pullNotificationService: PullNotificationService,
@@ -26,13 +26,20 @@ export class HeaderComponent implements OnInit{
 
     ngOnInit(): void {
         this.getUserFullName();
-        // const notificationData = interval(15000);
-        // notificationData.subscribe(n =>  this.getAddedAnswerNotifications());
+        this.getUserNotificationsCount();
+        const notificationData = interval(15000);
+        notificationData.subscribe(n =>  this.getUserNotificationsCount());
     }
 
     getUserFullName() {
         this.userService.getUserFullName().subscribe(data => {
             this.userFullName = data;
+        });
+    }
+
+    getUserNotificationsCount() {
+        this.pullNotificationService.getUserNotificationsCount().subscribe(data => {
+            this.notificationsCount = data;
         });
     }
 

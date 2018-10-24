@@ -41,13 +41,13 @@
 
 
             <div class="user-name navbar-left">
-                <div class="pull-right" routerLink="/notifications">
+                <div class="pull-right">
                     {{userFullName}}
                 </div>
 
-                <li class="dropdown hidden-xs" style="list-style: none; float: right;" *ngIf="notifications.length > 0">
+                <li class="dropdown hidden-xs" style="list-style: none; float: right;" *ngIf="notificationsCount > 0">
                         <a  class="dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-expanded="true">
-                            <i class="md md-notifications"></i> <span class="badge badge-danger">{{notifications.length}}</span>
+                            <i class="md md-notifications"></i> <span class="badge badge-danger" routerLink="/notifications">{{notificationsCount}}</span>
                         </a>
                         <!-- <ul class="dropdown-menu dropdown-menu-lg">
                             <li class="text-center notifi-title">اطلاعیه ها</li>
