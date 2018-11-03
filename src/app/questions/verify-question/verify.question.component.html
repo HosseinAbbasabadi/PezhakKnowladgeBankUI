@@ -1,0 +1,69 @@
+<div class="col-md-12">
+        <div class="panel panel-default">
+            <h3 class="panel-title">ایجاد سوال جدید</h3>
+            <div class="panel-body">
+                <form class="form-horizontal" role="form">
+                    <div class="form-group">
+                        <label for="question-title" class="col-sm-2 control-label">عنوان:</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="question-title" name="question-title" [(ngModel)]="question.title" placeholder="عنوان سوال" autocomplete="off">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group" style="margin-bottom: 10px">
+                        <label for="question-body" class="col-sm-2 control-label">متن:</label>
+                        <div class="col-md-10">
+                            <!-- <textarea class="form-control" id="question-body" name="question-body" rows="6" [(ngModel)]="question.body" placeholder="متن سوال"></textarea> -->
+                            <!-- <editor [(ngModel)]="question.body" apiKey="test" cloudChannel="dev" [init]="{plugins: 'link'}" name="question-body"></editor> -->
+                            <div class="editor block">
+                                <app-ngx-editor [config]="editorConfig" [(ngModel)]="question.body" name="question.body"></app-ngx-editor>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">انتخاب تگ:</label>
+                        <div class="col-md-10" style="padding-right: 10px; float: right;">
+    
+                            <ng-multiselect-dropdown
+                                    id="tags"
+                                    name="tags"
+                                    [placeholder]="'تگ های مناسب را انتخاب کنید'"
+                                    [data]="dropdownList"
+                                    [(ngModel)]="selectedItems"
+                                    [settings]="dropdownSettings">
+                              </ng-multiselect-dropdown>
+    
+                        </div>
+                    </div>
+                                    
+                    <div class="form-group m-b-0">
+                        <div class="col-sm-offset-3 col-sm-9">
+                            <button (click)="update(question)" type="button" class="btn btn-warning waves-effect waves-light">اعمال اصلاحات</button>
+                            <button (click)="verify(question.id)" type="button" class="btn btn-success waves-effect waves-light">تایید سوال</button>
+                        </div>
+                    </div>
+                </form>
+    
+                <hr />
+    
+                <h4 class="text-info">اگر تگ مدنظر شما در لیست بالا نبود، از اینجا اضافه کنید:</h4>
+                
+                <br />
+    
+                <form class="form-inline" role="form">
+                    <div class="form-group">
+                        <div class="col-sm-12">
+                            <input type="text" class="form-control" id="question-title" name="question-title" [(ngModel)]="tagToCreate.name" placeholder="نام تگ" autocomplete="off">
+                        </div>
+                    </div>
+                    <div class="form-group m-b-0">
+                        <div class="col-sm-offset-3 col-sm-9">
+                            <button (click)="createTag(tagToCreate)" type="button" class="btn btn-primary waves-effect waves-light">اضافه کن</button>
+                        </div>
+                    </div>
+                </form>
+            </div> <!-- panel-body -->
+        </div> <!-- panel -->
+    </div>
+    

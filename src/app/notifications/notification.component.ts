@@ -17,8 +17,7 @@ export class NotificationComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.getAddedAnswerNotifications();
-        this.getQuestionCreatedNotifications();
+        this.loadNotificaitons();
     }
 
     getAddedAnswerNotifications() {
@@ -32,11 +31,16 @@ export class NotificationComponent implements OnInit {
             this.questionCreatedNotifications = notification;
         });
     }
+
+    loadNotificaitons() {
+        this.getAddedAnswerNotifications();
+        this.getQuestionCreatedNotifications();
+    }
     
     clearNotification(id: string) {
         if(confirm("آیا از حذف این اعلانیه اطمینان دارید؟")){
-            this.pushNotificationService.clearNotifications(id).subscribe(data => {
-                this.getAddedAnswerNotifications();
+            this.pushNotificationService.clearNotifications(id).subscribe(() => {
+                this.loadNotificaitons();
             });
         }
     }

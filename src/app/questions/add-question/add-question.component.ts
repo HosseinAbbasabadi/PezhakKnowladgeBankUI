@@ -65,11 +65,4 @@ export class AddQuestionComponent implements OnInit {
         })
         return questionTags;
     }
-
-    createTag(command: CreateTag) {
-        this.tagService.create(command).subscribe(() => {
-            this.ngOnInit();
-            this.tagToCreate.name = "";
-        });
-    }
 }

@@ -25,6 +25,7 @@ export class QuestionInfoComponent implements OnInit {
     question = new QuestionDetailsModel();
     answer = new AddAnswer();
     answers = new Array<AnswerModel>();
+    
     questionBodyConfig = {
         editable: false,
         spellcheck: false,
@@ -46,8 +47,7 @@ export class QuestionInfoComponent implements OnInit {
 
     constructor(private readonly questionService: QuestionService,
                 private readonly getRouteValuesService: GetRouteValuesService,
-                private readonly answerService: AnswerService,
-                private readonly router: Router) {
+                private readonly answerService: AnswerService) {
     }
 
     ngOnInit(): void {

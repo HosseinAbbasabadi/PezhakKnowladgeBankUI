@@ -27,8 +27,9 @@ export class HeaderComponent implements OnInit{
     ngOnInit(): void {
         this.getUserFullName();
         this.getUserNotificationsCount();
-        const notificationData = interval(15000);
+        const notificationData = interval(10000);
         notificationData.subscribe(n =>  this.getUserNotificationsCount());
+        // this.getUserNotificationsCount();
     }
 
     getUserFullName() {

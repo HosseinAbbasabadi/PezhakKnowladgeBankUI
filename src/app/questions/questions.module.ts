@@ -12,6 +12,7 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { NgxEditorModule } from 'ngx-editor';
 import {ButtonsModule} from 'ngx-bootstrap';
 import { AuthGuardService } from "../shared";
+import { VerifyQuestionComponent } from "./verify-question/verify.question.component";
 
 const questionsRoutes: ModuleWithProviders = RouterModule.forChild([
     {
@@ -23,6 +24,11 @@ const questionsRoutes: ModuleWithProviders = RouterModule.forChild([
         path: "question-info/:id",
         component: QuestionInfoComponent,
         canActivate: [ AuthGuardService ]
+    },
+    {
+        path: "verify-question/:id",
+        component: VerifyQuestionComponent,
+        canActivate: [ AuthGuardService ]
     }
   ]);
 
@@ -30,7 +36,8 @@ const questionsRoutes: ModuleWithProviders = RouterModule.forChild([
     declarations: [
         AddQuestionComponent,
         QuestionInfoComponent,
-        QuestionsComponent
+        QuestionsComponent,
+        VerifyQuestionComponent
     ],
     imports: [
       questionsRoutes,
