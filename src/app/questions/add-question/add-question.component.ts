@@ -59,7 +59,8 @@ export class AddQuestionComponent implements OnInit {
     }
 
     private mapTags() {
-        var questionTags = new Array<number>();
+        var questionTags = new Array<number>(); 
+        debugger;
         this.selectedTags.forEach(x => {
             questionTags.push(x.id);
         })

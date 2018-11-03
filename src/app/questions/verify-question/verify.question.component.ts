@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { QuestionService, TagService, Tag, CreateTag, GetRouteValuesService, QuestionDetailsModel, VerifyQuestion } from "../../shared";
+import { QuestionService, TagService, CreateTag, GetRouteValuesService, QuestionDetailsModel, VerifyQuestion, ModifyQuestion } from "../../shared";
 import { Router } from "@angular/router";
 
 @Component({
@@ -12,6 +12,7 @@ import { Router } from "@angular/router";
 
 export class VerifyQuestionComponent implements OnInit {
     question = new QuestionDetailsModel();
+    newQuestion = new ModifyQuestion();
     tagToCreate = new CreateTag();
     dropdownList = [];
     selectedItems = [];
@@ -31,6 +32,7 @@ export class VerifyQuestionComponent implements OnInit {
                 private readonly getRouteValuesService: GetRouteValuesService,
                 private readonly router: Router) {
     }
+
     ngOnInit() {
         var questionId = this.getRouteValuesService.getId();
         this.getQuestionDetails(questionId);
@@ -57,6 +59,9 @@ export class VerifyQuestionComponent implements OnInit {
     getQuestionDetails(questionId: number) {
         this.questionService.getQuestionDetails(questionId).subscribe(data => {
             this.question = data;
+            this.newQuestion.id = data.id;
+            this.newQuestion.title = data.title;
+            this.newQuestion.body = data.body;
             this.selectedItems = data.tags;
         })
     }
@@ -67,11 +72,30 @@ export class VerifyQuestionComponent implements OnInit {
         });
     }
 
+    modify(question: QuestionDetailsModel) {
+        if(!confirm("آیا از اعمال اصلاحات انجام شده اطمینان دارید؟")) return;
+        this.newQuestion.id = question.id;
+        this.newQuestion.title = question.title;
+        this.newQuestion.body = question.body;
+        this.newQuestion.tags = this.mapTags();
+        this.questionService.modifyQuestion(this.newQuestion).subscribe(() => {
+            this.ngOnInit();
+        });
+    }
+
+    private mapTags() {
+        var questionTags = new Array<number>(); 
+        this.selectedItems.forEach(x => {
+            questionTags.push(x.id);
+        })
+        return questionTags;
+    }
+
     verify(questionId: number) {
         if(!confirm("در صورت تایید، سوال به صورت عمومی قابل پاسخ خواهد بود. آیا از انجام عملیات مطمئنید؟")) return;
         var command = new VerifyQuestion(questionId);
         this.questionService.verifyQuestion(command).subscribe(data => {
-            this.router.navigateByUrl("/notifications");
+            this.router.navigateByUrl("/notificatiothis.questionService.verifyQuestiontitle question.ns");
         });
     }
 }

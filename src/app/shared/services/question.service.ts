@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpService } from "./http.service";
 
-import { CreateQuestion, AddVote, VerifyQuestion } from "../command";
+import { CreateQuestion, AddVote, VerifyQuestion, ModifyQuestion } from "../command";
 import { QuestionModel, QuestionDetailsModel } from "../model";
 import { ContainsTrueAnswer } from "../command/contains.true.answer";
 import { environment } from "../../../environments/environment";
@@ -40,6 +40,11 @@ export class QuestionService extends ServiceBase {
 
     verifyQuestion(command: VerifyQuestion) {
         var action = "VerifyQuestion";
+        return this.httpService.post<any>(this.pathFactory(action), command);
+    }
+
+    modifyQuestion(command: ModifyQuestion) {
+        var action = "ModifyQuestion";
         return this.httpService.post<any>(this.pathFactory(action), command);
     }
 }

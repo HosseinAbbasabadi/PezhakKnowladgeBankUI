@@ -1,6 +1,6 @@
 <div class="col-md-12">
         <div class="panel panel-default">
-            <h3 class="panel-title">ایجاد سوال جدید</h3>
+            <h3 class="panel-title">سوال ایجاد شده توسط {{question.inquirer}}</h3>
             <div class="panel-body">
                 <form class="form-horizontal" role="form">
                     <div class="form-group">
@@ -39,7 +39,7 @@
                                     
                     <div class="form-group m-b-0">
                         <div class="col-sm-offset-3 col-sm-9">
-                            <button (click)="update(question)" type="button" class="btn btn-warning waves-effect waves-light">اعمال اصلاحات</button>
+                            <button (click)="modify(question)" type="button" class="btn btn-warning waves-effect waves-light">اعمال اصلاحات</button>
                             <button (click)="verify(question.id)" type="button" class="btn btn-success waves-effect waves-light">تایید سوال</button>
                         </div>
                     </div>
