@@ -7,6 +7,7 @@ import { ContainsTrueAnswer } from "../command/contains.true.answer";
 import { environment } from "../../../environments/environment";
 import "rxjs/add/operator/map";
 import { ServiceBase } from "./service.base";
+import { AddView } from "../command/add-view";
 
 
 @Injectable()
@@ -46,5 +47,10 @@ export class QuestionService extends ServiceBase {
     modifyQuestion(command: ModifyQuestion) {
         var action = "ModifyQuestion";
         return this.httpService.post<any>(this.pathFactory(action), command);
+    }
+
+    addView(command: AddView) {
+        var action = "AddView";
+        return this.httpService.put(this.pathFactory(action), command);
     }
 }

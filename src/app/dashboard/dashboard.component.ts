@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
-import { QuestionService, QuestionModel, UserService, SharedDataService } from "../shared";
+import { QuestionService, QuestionModel, SharedDataService } from "../shared";
+import { AddView } from "../shared/command/add-view";
 
 @Component({
     moduleId: module.id,
@@ -10,7 +11,7 @@ import { QuestionService, QuestionModel, UserService, SharedDataService } from "
 })
 
 export class DashboardComponent implements OnInit {
-    questions = new Array<QuestionModel>();
+    questions: QuestionModel[];
     
     constructor(private readonly questionService: QuestionService,
                 private readonly sharedDataService: SharedDataService) {
@@ -29,4 +30,9 @@ export class DashboardComponent implements OnInit {
         })
     }
     
+
+    addView(questionId: number) {
+        var command= new AddView(questionId);
+        this.questionService.addView(command).subscribe(() => {})
+    }
 }

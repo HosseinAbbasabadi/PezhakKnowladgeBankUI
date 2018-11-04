@@ -14,3 +14,4 @@ export * from "./user.service";
 export * from "./search.service";
 export * from "./pull.notification.service";
 export * from "./push.notification.service";
+export * from "./configuration";

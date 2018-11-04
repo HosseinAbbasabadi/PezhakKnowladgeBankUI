@@ -8,6 +8,7 @@ const ip = "http://localhost:";
 export const environment = {
   production: false,
   self_url: ip + "4200",
+  callback_url: ip + "4200/callback",
   forum_api_url: ip + "5050/api/",
   identity_api_url: ip + "5000/",
   notification_api_url: ip + "6060/api/"

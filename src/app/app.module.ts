@@ -22,11 +22,13 @@ import { LoadingPageModule } from 'angular-loading-page';
 import { MaterialBarModule } from 'angular-loading-page';
 import { FormsModule } from '@angular/forms';
 import { NotificationComponent } from './notifications/notification.component';
+import { CallbackComponent } from './callback/callback.component';
 
 const appRoute: ModuleWithProviders = RouterModule.forRoot([
   { path: "", component: DashboardComponent },
   { path: "search/:expression", component: SearchComponent },
-  { path: "notifications", component: NotificationComponent }
+  { path: "notifications", component: NotificationComponent },
+  { path: "callback", component: CallbackComponent }
 ]);
 
 @NgModule({
@@ -36,7 +38,8 @@ const appRoute: ModuleWithProviders = RouterModule.forRoot([
     DashboardComponent,
     RightMenuComponent,
     SearchComponent,
-    NotificationComponent
+    NotificationComponent,
+    CallbackComponent
   ],
   imports: [
     BrowserModule,

@@ -37,7 +37,7 @@
 
         <div class="col-md-9 question-body">
             <div class="col-md-12">
-                    <a [routerLink]="['/question-info', question.id]" class="question-title text-primary"> {{question.title}} </a>                        
+                    <a [routerLink]="['/question-info', question.id]" class="question-title text-primary" (click)="addView(question.id)"> {{question.title}} </a>                        
             </div>
             <div class="col-md-9">
                 <div class="tags">

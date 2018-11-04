@@ -13,21 +13,25 @@ export class AuthenticationService {
     authHeaders: Headers;
     userManager: UserManager;
 
-    constructor(private localStorageService: LocalStorageService,
-                private router: Router) {
+    constructor(private localStorageService: LocalStorageService) {
                     this.userManager = new UserManager(config);
     }
 
     login() {
         var userManager = this.userManager;
-        userManager.signinRedirectCallback().then(function (user){
-            localStorage.setItem(ACCESS_TOKEN_NAME, user.access_token);
-        }).catch(function(){
-            userManager.signinRedirect().then(function () {
-            }).catch(function (){
-                userManager.revokeAccessToken()
-            })
-        });
+        // userManager.signinRedirectCallback().then(function (user){
+        //     localStorage.setItem(ACCESS_TOKEN_NAME, user.access_token);
+        // }).catch(function(){
+        //     userManager.signinRedirect().then(function () {
+        //     }).catch(function (){
+        //         userManager.revokeAccessToken()
+        //     })
+        // });
+
+        userManager.signinRedirect().then(function() {
+
+        }).catch(function() {
+        })
     }
 
     logout() {

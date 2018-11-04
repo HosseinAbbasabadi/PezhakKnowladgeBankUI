@@ -95,7 +95,7 @@ export class VerifyQuestionComponent implements OnInit {
         if(!confirm("در صورت تایید، سوال به صورت عمومی قابل پاسخ خواهد بود. آیا از انجام عملیات مطمئنید؟")) return;
         var command = new VerifyQuestion(questionId);
         this.questionService.verifyQuestion(command).subscribe(data => {
-            this.router.navigateByUrl("/notificatiothis.questionService.verifyQuestiontitle question.ns");
+            this.router.navigateByUrl("/notifications");
         });
     }
 }
