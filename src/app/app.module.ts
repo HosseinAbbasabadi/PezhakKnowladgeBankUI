@@ -22,13 +22,13 @@ import { LoadingPageModule } from 'angular-loading-page';
 import { MaterialBarModule } from 'angular-loading-page';
 import { FormsModule } from '@angular/forms';
 import { NotificationComponent } from './notifications/notification.component';
-import { CallbackComponent } from './callback/callback.component';
+import { PageNotFoundComponent } from './page-not-found/page.not.found.component';
 
 const appRoute: ModuleWithProviders = RouterModule.forRoot([
   { path: "", component: DashboardComponent },
   { path: "search/:expression", component: SearchComponent },
   { path: "notifications", component: NotificationComponent },
-  { path: "callback", component: CallbackComponent }
+  { path: '**', component: PageNotFoundComponent }
 ]);
 
 @NgModule({
@@ -39,7 +39,7 @@ const appRoute: ModuleWithProviders = RouterModule.forRoot([
     RightMenuComponent,
     SearchComponent,
     NotificationComponent,
-    CallbackComponent
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
@@ -49,7 +49,8 @@ const appRoute: ModuleWithProviders = RouterModule.forRoot([
     HttpModule,
     LoadingPageModule,
     MaterialBarModule,
-    FormsModule
+    FormsModule,
+    RouterModule
   ],
   providers: [ 
     HttpService,

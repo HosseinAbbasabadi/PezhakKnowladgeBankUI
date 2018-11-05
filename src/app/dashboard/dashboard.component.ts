@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { QuestionService, QuestionModel, SharedDataService } from "../shared";
 import { AddView } from "../shared/command/add-view";
+import { UserManager } from "oidc-client";
 
 @Component({
     moduleId: module.id,
@@ -15,6 +16,7 @@ export class DashboardComponent implements OnInit {
     
     constructor(private readonly questionService: QuestionService,
                 private readonly sharedDataService: SharedDataService) {
+        
     }
 
     ngOnInit(): void {

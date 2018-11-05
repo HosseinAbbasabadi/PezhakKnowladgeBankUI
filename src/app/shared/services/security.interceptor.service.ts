@@ -23,6 +23,11 @@ export class SecurityInterceptor implements HttpInterceptor {
         if(token === null){
           this.authenticationService.login();
         }
+        if(token === undefined)
+        {
+          this.authenticationService.login();
+        }
+
         request = request.clone({
             setHeaders: {
               Authorization: `Bearer ${this.authenticationService.getToken()}`
@@ -45,6 +50,7 @@ export class SecurityInterceptor implements HttpInterceptor {
                 if(err.status === 403) {
                   alert("شما دسترسی لازم جهت انجام این عملیات را ندارید")
                 }
+
                 else{
                   console.log(err);
                 }

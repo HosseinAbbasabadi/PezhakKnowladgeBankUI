@@ -13,3 +13,12 @@
     margin-top: 5px;
     margin-left: 5px;
 }
+
+.icon {
+    background-image: url(siteIcon.jpg);
+    background-repeat: no-repeat;
+    width: 68px;
+    height: 53px;
+    float: left;
+    margin-right: 15px;
+}
