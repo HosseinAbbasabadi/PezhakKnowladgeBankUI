@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { Router, ActivatedRoute  } from "@angular/router";
+import { Router } from "@angular/router";
 import { QuestionService, CreateQuestion, TagService, Tag, CreateTag } from "../../shared";
 
 @Component({
@@ -24,7 +24,15 @@ export class AddQuestionComponent implements OnInit {
         height: '10rem',
         minHeight: '10rem',
         placeholder: 'متن سوال',
-        translate: 'no'
+        translate: 'no',
+        "toolbar":
+        [
+            ["bold", "italic", "underline", "strikeThrough", "superscript", "subscript", "fontSize", "color",
+            "justifyLeft", "justifyCenter", "justifyRight", "justifyFull", "indent", "outdent",
+            "cut", "copy", "delete", "removeFormat", "undo", "redo",
+            "paragraph", "blockquote", "removeBlockquote", "horizontalLine", "orderedList", "unorderedList",
+            "link", "unlink"]
+        ]
     };
 
     constructor(private readonly questionService: QuestionService,
@@ -60,7 +68,6 @@ export class AddQuestionComponent implements OnInit {
 
     private mapTags() {
         var questionTags = new Array<number>(); 
-        debugger;
         this.selectedTags.forEach(x => {
             questionTags.push(x.id);
         })

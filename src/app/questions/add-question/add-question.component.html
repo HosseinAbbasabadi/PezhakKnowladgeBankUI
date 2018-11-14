@@ -16,7 +16,7 @@
                         <!-- <textarea class="form-control" id="question-body" name="question-body" rows="6" [(ngModel)]="question.body" placeholder="متن سوال"></textarea> -->
                         <!-- <editor [(ngModel)]="question.body" apiKey="test" cloudChannel="dev" [init]="{plugins: 'link'}" name="question-body"></editor> -->
                         <div class="editor block">
-                            <app-ngx-editor [config]="editorConfig" [(ngModel)]="question.body" name="question.body"></app-ngx-editor>
+                            <app-ngx-editor imageEndPoint="http://myApiEndPoint" [config]="editorConfig" [(ngModel)]="question.body" name="question.body"></app-ngx-editor>
                         </div>
                     </div>
                 </div>

@@ -39,4 +39,8 @@ export class AuthenticationService {
     getToken() {
         return this.localStorageService.getItem(ACCESS_TOKEN_NAME);
     }
+
+    getUserId() {
+        return this.userManager.getUser();
+    }
 }

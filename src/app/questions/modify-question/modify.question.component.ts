@@ -1,16 +1,16 @@
 import { Component, OnInit } from "@angular/core";
-import { QuestionService, TagService, CreateTag, GetRouteValuesService, QuestionDetailsModel, VerifyQuestion, ModifyQuestion } from "../../shared";
+import { QuestionService, TagService, CreateTag, GetRouteValuesService, QuestionDetailsModel, ModifyQuestion } from "../../shared";
 import { Router } from "@angular/router";
 
 @Component({
     moduleId: module.id,
-    selector: "verify-question",
-    templateUrl: "verify.question.component.html",
-    styleUrls: ["verify.question.component.css"],
+    selector: "modify-question",
+    templateUrl: "modify.question.component.html",
+    styleUrls: ["modify.question.component.css"],
     providers: [ TagService, QuestionService, GetRouteValuesService ]
 })
 
-export class VerifyQuestionComponent implements OnInit {
+export class ModifyQuestionComponent implements OnInit {
     question = new QuestionDetailsModel();
     newQuestion = new ModifyQuestion();
     tagToCreate = new CreateTag();
@@ -79,7 +79,7 @@ export class VerifyQuestionComponent implements OnInit {
         this.newQuestion.body = question.body;
         this.newQuestion.tags = this.mapTags();
         this.questionService.modifyQuestion(this.newQuestion).subscribe(() => {
-            this.ngOnInit();
+            this.router.navigateByUrl("question-info/" + question.id);
         });
     }
 
@@ -91,11 +91,11 @@ export class VerifyQuestionComponent implements OnInit {
         return questionTags;
     }
 
-    verify(questionId: number) {
-        if(!confirm("در صورت تایید، سوال به صورت عمومی قابل پاسخ خواهد بود. آیا از انجام عملیات مطمئنید؟")) return;
-        var command = new VerifyQuestion(questionId);
-        this.questionService.verifyQuestion(command).subscribe(data => {
-            this.router.navigateByUrl("/notifications");
-        });
-    }
+    // verify(questionId: number) {
+    //     if(!confirm("در صورت تایید، سوال به صورت عمومی قابل پاسخ خواهد بود. آیا از انجام عملیات مطمئنید؟")) return;
+    //     var command = new VerifyQuestion(questionId);
+    //     this.questionService.verifyQuestion(command).subscribe(data => {
+    //         this.router.navigateByUrl("/notifications");
+    //     });
+    // }
 }

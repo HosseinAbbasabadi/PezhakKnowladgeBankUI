@@ -9,7 +9,8 @@ import {
     AnswerService,
     AddVote,
     AnswerModel,
-    ChosenAnswer
+    ChosenAnswer,
+    AuthenticationService
 } from "../../shared";
 import { ContainsTrueAnswer } from "../../shared/command/contains.true.answer";
 
@@ -25,7 +26,8 @@ export class QuestionInfoComponent implements OnInit {
     question = new QuestionDetailsModel();
     answer = new AddAnswer();
     answers = new Array<AnswerModel>();
-    
+    userId: number;
+
     questionBodyConfig = {
         editable: false,
         spellcheck: false,
@@ -47,13 +49,15 @@ export class QuestionInfoComponent implements OnInit {
 
     constructor(private readonly questionService: QuestionService,
                 private readonly getRouteValuesService: GetRouteValuesService,
-                private readonly answerService: AnswerService) {
+                private readonly answerService: AnswerService,
+                private readonly authenticationService: AuthenticationService) {
     }
 
     ngOnInit(): void {
         var questionId = this.getRouteValuesService.getId();
         this.getQuestionDetails(questionId);
         this.getAnswers(questionId);
+        this.getUserId();
     }
 
     getQuestionDetails(questionId: number) {
@@ -67,6 +71,12 @@ export class QuestionInfoComponent implements OnInit {
         this.answerService.addAnswer(command).subscribe(data => {
             this.ngOnInit();
         }, () => alert("مشکلی پیش آمده لطفا دوباره تلاش کنید"));
+    }
+
+    getUserId() {
+        this.authenticationService.getUserId().then(user => {
+            this.userId = user.profile.sub;
+        });
     }
 
     vote(opinion: boolean){

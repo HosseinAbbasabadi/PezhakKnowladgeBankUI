@@ -18,7 +18,7 @@
             <div class="panel-body"> 
                 <div class="alert alert-info alert-dismissable" *ngFor="let notification of answerAddedNotifications">
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true" (click)="clearNotification(notification.sign)">×</button>
-                    سوال: <a [routerLink]="['/verify-question', notification.questionId]" class="alert-link">{{notification.questionTitle}}</a> توسط: {{notification.responderName}} پاسخ داده شد
+                    سوال: <a [routerLink]="['/question-info', notification.questionId]" class="alert-link">{{notification.questionTitle}}</a> توسط: {{notification.responderName}} پاسخ داده شد
                     <br />
                     <span>تاریخ: {{notification.creationDate}}</span>
                 </div>
