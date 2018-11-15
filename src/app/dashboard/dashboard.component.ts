@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { QuestionService, QuestionModel, SharedDataService } from "../shared";
 import { AddView } from "../shared/command/add-view";
 import { UserManager } from "oidc-client";
+import { interval } from "rxjs/observable/interval";
 
 @Component({
     moduleId: module.id,
@@ -24,6 +25,8 @@ export class DashboardComponent implements OnInit {
             this.questions = data;
         });
         this.getQuestions();
+        const notificationData = interval(30000);
+        notificationData.subscribe(() =>  this.getQuestions());
     }
     
     getQuestions() {
@@ -31,7 +34,6 @@ export class DashboardComponent implements OnInit {
             this.questions = data;
         })
     }
-    
 
     addView(questionId: number) {
         var command= new AddView(questionId);

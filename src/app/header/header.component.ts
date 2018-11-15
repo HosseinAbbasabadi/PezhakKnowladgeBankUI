@@ -28,7 +28,7 @@ export class HeaderComponent implements OnInit{
         this.getUserFullName();
         this.getUserNotificationsCount();
         const notificationData = interval(10000);
-        notificationData.subscribe(n =>  this.getUserNotificationsCount());
+        notificationData.subscribe(() =>  this.getUserNotificationsCount());
         // this.getUserNotificationsCount();
     }
 
