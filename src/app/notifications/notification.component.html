@@ -29,6 +29,22 @@
     <div class="col-lg-6">
         <div class="panel panel-info panel-border">
             <div class="panel-heading"> 
+                <h3 class="panel-title">پاسخ های صحیح شما</h3> 
+            </div> 
+            <div class="panel-body"> 
+                <div class="alert alert-info alert-dismissable" *ngFor="let notification of answerChoosedNotifications">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true" (click)="clearNotification(notification.sign)">×</button>
+                    <a [routerLink]="['/question-info', notification.questionId]" class="alert-link">پاسخ شما به عنوان پاسخ صحیح انتخاب شده است</a>
+                    <br />
+                    <span>تاریخ: {{notification.creationDate}}</span>
+                </div>
+            </div> 
+        </div>
+    </div>
+
+    <!-- <div class="col-lg-6">
+        <div class="panel panel-info panel-border">
+            <div class="panel-heading"> 
                 <h3 class="panel-title">سوالات تایید نشده</h3> 
             </div> 
             <div class="panel-body"> 
@@ -40,5 +56,5 @@
                 </div>
             </div> 
         </div>
-    </div>
+    </div> -->
 </div>

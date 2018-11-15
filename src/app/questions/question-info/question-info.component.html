@@ -28,7 +28,7 @@
             <div class="creator-date">
                 <span>{{question.creationDateTime}}</span>
                 <button *ngIf="userId == question.inquirerId" (click)="modify(question)" type="button" class="btn btn-default waves-effect waves-light"
-                data-toggle="modal" data-target="#con-close-modal" [routerLink]="['/modify-question', question.id]">ویرایش سوال</button>
+                 [routerLink]="['/modify-question', question.id]">اصلاح سوال</button>
             </div>  
         </div>
         
@@ -55,7 +55,7 @@
             <app-ngx-editor [config]="questionBodyConfig" [(ngModel)]="answer.body" name="answer.body"></app-ngx-editor>
             <div class="creator-date">
                 <span>{{answer.creationDateTime}}</span>
-                <button *ngIf="userId == answer.responderId" (click)="deleteAnswer(answer)" type="button" class="btn btn-danger waves-effect waves-light pull-left">حذف پاسخ</button>
+                <!-- <button *ngIf="userId == answer.responderId" (click)="deleteAnswer(answer)" type="button" class="btn btn-danger waves-effect waves-light pull-left">حذف پاسخ</button> -->
             </div>  
         </div>
 
@@ -78,70 +78,3 @@
         </div>
     </form>
 </div>
-
-<div id="con-close-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
-        <div class="modal-dialog"> 
-            <div class="modal-content"> 
-                <div class="modal-header"> 
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button> 
-                    <h4 class="modal-title">Modal Content is Responsive</h4> 
-                </div> 
-                <div class="modal-body"> 
-                    <div class="row"> 
-                        <div class="col-md-6"> 
-                            <div class="form-group"> 
-                                <label for="field-1" class="control-label">Name</label> 
-                                <input type="text" class="form-control" id="field-1" placeholder="John"> 
-                            </div> 
-                        </div> 
-                        <div class="col-md-6"> 
-                            <div class="form-group"> 
-                                <label for="field-2" class="control-label">Surname</label> 
-                                <input type="text" class="form-control" id="field-2" placeholder="Doe"> 
-                            </div> 
-                        </div> 
-                    </div> 
-                    <div class="row"> 
-                        <div class="col-md-12"> 
-                            <div class="form-group"> 
-                                <label for="field-3" class="control-label">Address</label> 
-                                <input type="text" class="form-control" id="field-3" placeholder="Address"> 
-                            </div> 
-                        </div> 
-                    </div> 
-                    <div class="row"> 
-                        <div class="col-md-4"> 
-                            <div class="form-group"> 
-                                <label for="field-4" class="control-label">City</label> 
-                                <input type="text" class="form-control" id="field-4" placeholder="Boston"> 
-                            </div> 
-                        </div> 
-                        <div class="col-md-4"> 
-                            <div class="form-group"> 
-                                <label for="field-5" class="control-label">Country</label> 
-                                <input type="text" class="form-control" id="field-5" placeholder="United States"> 
-                            </div> 
-                        </div> 
-                        <div class="col-md-4"> 
-                            <div class="form-group"> 
-                                <label for="field-6" class="control-label">Zip</label> 
-                                <input type="text" class="form-control" id="field-6" placeholder="123456"> 
-                            </div> 
-                        </div> 
-                    </div> 
-                    <div class="row"> 
-                        <div class="col-md-12"> 
-                            <div class="form-group no-margin"> 
-                                <label for="field-7" class="control-label">Personal Info</label> 
-                                <textarea class="form-control autogrow" id="field-7" placeholder="Write something about yourself" style="overflow: hidden; word-wrap: break-word; resize: horizontal; height: 104px;">                                                        </textarea> 
-                            </div> 
-                        </div> 
-                    </div> 
-                </div> 
-                <div class="modal-footer"> 
-                    <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Close</button> 
-                    <button type="button" class="btn btn-info waves-effect waves-light">Save changes</button> 
-                </div> 
-            </div> 
-        </div>
-    </div><!-- /.modal -->

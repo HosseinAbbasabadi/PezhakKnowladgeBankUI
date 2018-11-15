@@ -11,6 +11,7 @@ import { PullNotificationService, PushNotificationService } from "../shared";
 export class NotificationComponent implements OnInit {
     answerAddedNotifications = new Array<any>();
     questionCreatedNotifications = new Array<any>();
+    answerChoosedNotifications = new Array<any>();
 
     constructor(private readonly pullNotificationService: PullNotificationService,
                 private readonly pushNotificationService: PushNotificationService) {
@@ -20,6 +21,12 @@ export class NotificationComponent implements OnInit {
         this.loadNotificaitons();
     }
 
+    loadNotificaitons() {
+        this.getAddedAnswerNotifications();
+        this.getQuestionCreatedNotifications();
+        this.getAnswerChoosedNotifications();
+    }
+
     getAddedAnswerNotifications() {
         this.pullNotificationService.getAnswerAddedNotifications().subscribe(notifications => {
             this.answerAddedNotifications = notifications;
@@ -27,16 +34,17 @@ export class NotificationComponent implements OnInit {
     }
 
     getQuestionCreatedNotifications() {
-        this.pullNotificationService.getQuestionCreatedNotifications().subscribe(notification => {
-            this.questionCreatedNotifications = notification;
+        this.pullNotificationService.getQuestionCreatedNotifications().subscribe(notifications => {
+            this.questionCreatedNotifications = notifications;
         });
     }
 
-    loadNotificaitons() {
-        this.getAddedAnswerNotifications();
-        this.getQuestionCreatedNotifications();
+    getAnswerChoosedNotifications() {
+        this.pullNotificationService.getAnswerChoosedNotifications().subscribe(notifications => {
+           this.answerChoosedNotifications = notifications; 
+        });
     }
-    
+
     clearNotification(id: string) {
         if(confirm("آیا از حذف این اعلانیه اطمینان دارید؟")){
             this.pushNotificationService.clearNotifications(id).subscribe(() => {

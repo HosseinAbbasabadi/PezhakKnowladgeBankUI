@@ -15,7 +15,7 @@
 }
 
 .icon {
-    background-image: url(siteIcon.jpg);
+    background-image: url(../../siteIcon.jpg);
     background-repeat: no-repeat;
     width: 68px;
     height: 53px;
