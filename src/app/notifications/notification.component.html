@@ -16,9 +16,8 @@
                 <h3 class="panel-title">پاسخ ها به سوالات شما</h3> 
             </div> 
             <div class="panel-body"> 
-                <div class="alert alert-info alert-dismissable" *ngFor="let notification of answerAddedNotifications">
-                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true" (click)="clearNotification(notification.sign)">×</button>
-                    سوال: <a [routerLink]="['/question-info', notification.questionId]" class="alert-link">{{notification.questionTitle}}</a> توسط: {{notification.responderName}} پاسخ داده شد
+                <div class="alert alert-info" *ngFor="let notification of answerAddedNotifications">
+                    <a [routerLink]="['/question-info', notification.questionId]" (click)="clearNotification(notification.sign)">سوال: <strong>{{notification.questionTitle}}</strong> توسط: {{notification.responderName}} پاسخ داده شد</a>
                     <br />
                     <span>تاریخ: {{notification.creationDate}}</span>
                 </div>
@@ -32,9 +31,8 @@
                 <h3 class="panel-title">پاسخ های صحیح شما</h3> 
             </div> 
             <div class="panel-body"> 
-                <div class="alert alert-info alert-dismissable" *ngFor="let notification of answerChoosedNotifications">
-                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true" (click)="clearNotification(notification.sign)">×</button>
-                    <a [routerLink]="['/question-info', notification.questionId]" class="alert-link">پاسخ شما به عنوان پاسخ صحیح انتخاب شده است</a>
+                <div class="alert alert-info" *ngFor="let notification of answerChoosedNotifications">
+                    <a [routerLink]="['/question-info', notification.questionId]" (click)="clearNotification(notification.sign)">پاسخ شما به عنوان پاسخ صحیح انتخاب شده است</a>
                     <br />
                     <span>تاریخ: {{notification.creationDate}}</span>
                 </div>

@@ -46,10 +46,9 @@ export class NotificationComponent implements OnInit {
     }
 
     clearNotification(id: string) {
-        if(confirm("آیا از حذف این اعلانیه اطمینان دارید؟")){
-            this.pushNotificationService.clearNotifications(id).subscribe(() => {
-                this.loadNotificaitons();
-            });
-        }
+        debugger
+        this.pushNotificationService.clearNotifications(id).subscribe(() => {
+            this.loadNotificaitons();
+        });
     }
 }
